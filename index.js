@@ -1,6 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
 
+const app = express();
+
 const movieData = [
         {
                 title: 'Interstellar',
@@ -44,8 +46,30 @@ const movieData = [
         },
 ];
 
-const app = express();
-
+// Middleware
 app.use(morgan('common'));
+app.use(express.static('public'));
 
-app.get('/movies', (req, res) => {});
+app.get('/', (req, res) => {
+        res.send('myFlix Movies API');
+});
+
+// Get the movies as JSON data
+app.get('/movies', (req, res) => {
+        res.json(movieData);
+});
+
+// Send documentation page
+app.get('/documentation', (req, res) => {
+        res.sendFile('public/documentation.html', { root: __dirname });
+});
+
+// Error handler
+app.use((err, req, res, next) => {
+        console.error(err.stack);
+        res.status(500).send('Something went wrong');
+});
+
+app.listen(8080, () => {
+        console.log('Listening on port 8080');
+});
