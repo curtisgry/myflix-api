@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const morgan = require('morgan');
+const uuid = require('uuid');
 
 const app = express();
 
@@ -67,7 +68,44 @@ const movieData = [
         },
 ];
 
-const users = [];
+const users = [
+        {
+                name: 'firstUser111',
+                favoriteMovies: [
+                        {
+                                title: 'The Truman Show',
+                                year: '1998',
+                                director: 'test',
+                                genre: 'test',
+                        },
+                ],
+                id: '0b8b587e-9eff-4e55-a3a9-e203bc0980a5',
+        },
+        {
+                name: 'secondUser111',
+                favoriteMovies: [
+                        {
+                                title: 'The Truman Show',
+                                year: '1998',
+                                director: 'test',
+                                genre: 'test',
+                        },
+                ],
+                id: '0b8b587e-9eff-4e55-a3a9-e203bc0980a5',
+        },
+        {
+                name: 'thirdUser111',
+                favoriteMovies: [
+                        {
+                                title: 'The Truman Show',
+                                year: '1998',
+                                director: 'test',
+                                genre: 'test',
+                        },
+                ],
+                id: '0b8b587e-9eff-4e55-a3a9-e203bc0980a5',
+        },
+];
 
 // Middleware
 app.use(morgan('common'));
@@ -114,6 +152,74 @@ app.get('/movies/directors/:directorName', (req, res) => {
         }
 });
 
+// CREATE
+app.post('/users', (req, res) => {
+        const newUser = req.body;
+        console.dir(req);
+        if (newUser) {
+                newUser.id = uuid.v4();
+                users.push(newUser);
+                res.status(201).json(newUser);
+        } else {
+                res.status(400).send('users need a name');
+        }
+});
+
+// CREATE
+app.post('/users/:userName/favorites', (req, res) => {
+        const movie = req.body;
+        const user = users.find((item) => item.name === req.params.userName);
+
+        if (user && movie) {
+                user.favoriteMovies.push(movie);
+                res.status(201).json(user);
+        } else {
+                res.status(400).send('User does not exist, or no movie data was entered');
+        }
+});
+
+// UPDATE
+app.put('/users/:userName', (req, res) => {
+        const { userName } = req.params;
+        const newName = req.body;
+        const userToUpdate = users.find((user) => user.name === userName);
+
+        if (userToUpdate) {
+                userToUpdate.name = newName.name;
+                res.status(201).json(userToUpdate);
+        } else {
+                res.status(400).send('No user found');
+        }
+});
+
+// DELETE
+app.delete('/users/:userName/favorites/:favoriteTitle', (req, res) => {
+        const { userName, favoriteTitle } = req.params;
+        const user = users.find((user) => user.name === userName);
+        const movieIsInList = user.favoriteMovies.find((item) => item.title.toLowerCase() === favoriteTitle);
+        console.log(movieIsInList);
+        if (user && movieIsInList) {
+                const removeMovie = user.favoriteMovies.filter((movie) => movie.title.toLowerCase() !== favoriteTitle);
+                user.favoriteMovies = removeMovie;
+                res.status(200).send(`${favoriteTitle} has been removed`);
+        } else {
+                res.status(400).send('User or movie not found');
+        }
+});
+
+// DELETE
+app.delete('/users/:userName', (req, res) => {
+        const { userName } = req.params;
+        const userToRemove = users.find((user) => user.name === userName);
+        const userIndex = users.indexOf(userToRemove);
+
+        if (userToRemove) {
+                users.splice(userIndex, 1);
+                res.status(200).send(`The user: ${userName} has been removed`);
+        } else {
+                res.status(400).send('No user found');
+        }
+});
 
 // Send documentation page
 app.get('/documentation', (req, res) => {
