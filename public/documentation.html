@@ -33,7 +33,7 @@
                 <!-- Req data -->
                 <td>None</td>
                 <!-- Res data -->
-                <td>JSON</td>
+                <td>JSON with all movies</td>
             </tr>
             <tr>
                 <!-- Logic -->
@@ -45,7 +45,18 @@
                 <!-- Req data -->
                 <td>None</td>
                 <!-- Res data -->
-                <td>JSON</td>
+                <td>
+                    JSON with one movie
+                    <br>
+                    <code>
+                        {
+                        "title": "Interstellar",
+                        "year": "2014",
+                        "director": "test",
+                        "genre": "scifi"
+                        }
+                </code>
+                </td>
             </tr>
             <tr>
                 <!-- Logic -->
@@ -57,7 +68,26 @@
                 <!-- Req data -->
                 <td>None</td>
                 <!-- Res data -->
-                <td>JSON</td>
+                <td>
+                    JSON with list matching genre
+                    <br>
+                    <code>
+                                            [
+                        {
+                            "title": "Interstellar",
+                            "year": "2014",
+                            "director": "test",
+                            "genre": "scifi"
+                        },
+                        {
+                            "title": "Arrival",
+                            "year": "2016",
+                            "director": "test",
+                            "genre": "scifi"
+                        },
+                    ]
+                    </code>
+                </td>
             </tr>
             <tr>
                 <!-- Logic -->
@@ -69,7 +99,7 @@
                 <!-- Req data -->
                 <td>None</td>
                 <!-- Res data -->
-                <td>JSON</td>
+                <td>JSON with movies from a director input</td>
             </tr>
             <tr>
                 <!-- Logic -->
@@ -79,7 +109,16 @@
                 <!-- Method -->
                 <td>POST</td>
                 <!-- Req data -->
-                <td>JSON</td>
+                <td>
+                    JSON
+                    <code>
+                        {
+                            "name": "newuser1",
+                            "favoriteMovies": []
+                        }
+                    </code>
+
+                </td>
                 <!-- Res data -->
                 <td>JSON</td>
             </tr>
@@ -91,7 +130,17 @@
                 <!-- Method -->
                 <td>POST</td>
                 <!-- Req data -->
-                <td>JSON</td>
+                <td>
+                    JSON
+                    <code>
+                        {
+                            "title": "A favorite movie",
+                            "year": "2005",
+                            "director": "director here",
+                            "genre": "drama"
+                        }
+                    </code>
+                </td>
                 <!-- Res data -->
                 <td>JSON</td>
             </tr>
@@ -103,7 +152,14 @@
                 <!-- Method -->
                 <td>POST</td>
                 <!-- Req data -->
-                <td>JSON</td>
+                <td>
+                    JSON
+                    <code>
+                        {
+                            "name": "updatedNow222"
+                        }
+                    </code>
+                </td>
                 <!-- Res data -->
                 <td>JSON</td>
             </tr>
