@@ -2,16 +2,19 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>myFlix API</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 </head>
 
 <body>
-    <h1>myFlix is an API for Movie data such as the genre, year released, and director. </h1>
+    <h1>
+        myFlix is an API for Movie data such as the genre, year released, and
+        director.
+    </h1>
     <table class="table">
         <thead>
             <tr>
@@ -47,15 +50,28 @@
                 <!-- Res data -->
                 <td>
                     JSON with one movie
-                    <br>
+                    <br />
+
                     <code>
-                        {
-                        "title": "Interstellar",
-                        "year": "2014",
-                        "director": "test",
-                        "genre": "scifi"
-                        }
-                </code>
+              { "_id" : ObjectId("622c8a25104a0a6029ab20f1"), "Title" :
+              "Anchorman: The Legend of Ron Burgundy", "Description" : "Ron
+              Burgundy is San Diegos top-rated newsman in the male-dominated
+              broadcasting of the 1970s, but that is all about to change for Ron
+              and his cronies when an ambitious woman is hired as a new
+              anchor.", "Genre" : { "Name" : "Comedy", "Description" : "Comedy
+              is a genre of film in which the main emphasis is on humor. These
+              films are designed to make the audience laugh through amusement
+              and most often work by exaggerating characteristics for humorous
+              effect." }, "Director" : { "Name" : "Adam McKay", "Bio" : "Adam
+              McKay (born April 17, 1968) is an American screenwriter, director,
+              comedian, and actor. McKay has a comedy partnership with Will
+              Ferrell, with whom he co-wrote the films Anchorman, Talladega
+              Nights, and The Other Guys.", "Birth" : "1968", "Description" :
+              "Adam McKay rose to fame in the 2000s for his collaborations with
+              comedian Will Ferrell and co-wrote his films Anchorman, Talladega
+              Nights, and The Other Guys." }, "ImagePath" : "anchorman.png",
+              "Featured" : false }
+            </code>
                 </td>
             </tr>
             <tr>
@@ -70,23 +86,21 @@
                 <!-- Res data -->
                 <td>
                     JSON with list matching genre
-                    <br>
+                    <br />
+
                     <code>
-                                            [
-                        {
-                            "title": "Interstellar",
-                            "year": "2014",
-                            "director": "test",
-                            "genre": "scifi"
-                        },
-                        {
-                            "title": "Arrival",
-                            "year": "2016",
-                            "director": "test",
-                            "genre": "scifi"
-                        },
-                    ]
-                    </code>
+              { "_id" : ObjectId("622c8a25104a0a6029ab20f1"), "Title" :
+              "Anchorman: The Legend of Ron Burgundy", "Description" :
+              "Description", "Genre" : { "Name" : "Comedy", "Description" :
+              "Description" }, "Director" : { "Name" : "Adam McKay", "Bio" :
+              "Bio", "Birth" : "1968", }, "ImagePath" : "anchorman.png",
+              "Featured" : false } { "_id" :
+              ObjectId("622c8a2b104a0a6029ab20f2"), "Title" : "Dont Look Up",
+              "Description" : "Description", "Genre" : { "Name" : "Comedy",
+              "Description" : "Description" }, "Director" : { "Name" : "Adam
+              McKay", "Bio" : "Bio", "Birth" : "1968", }, "ImagePath" :
+              "dontlookup.png", "Featured" : true }
+            </code>
                 </td>
             </tr>
             <tr>
@@ -111,13 +125,12 @@
                 <!-- Req data -->
                 <td>
                     JSON
-                    <code>
-                        {
-                            "name": "newuser1",
-                            "favoriteMovies": []
-                        }
-                    </code>
 
+                    <code>
+              { UserName: 'moviefan22', Password: 'popcorn123', Email:
+              'moviefan@email.com', Birthday: new Date('1984-03-22'),
+              FavoriteMovies: [ObjectId('622bc423104a0a6029ab20ea')], };
+            </code>
                 </td>
                 <!-- Res data -->
                 <td>JSON</td>
@@ -132,14 +145,7 @@
                 <!-- Req data -->
                 <td>
                     JSON
-                    <code>
-                        {
-                            "title": "A favorite movie",
-                            "year": "2005",
-                            "director": "director here",
-                            "genre": "drama"
-                        }
-                    </code>
+                    <code> {_id: "idformovie"} </code>
                 </td>
                 <!-- Res data -->
                 <td>JSON</td>
@@ -154,11 +160,7 @@
                 <!-- Req data -->
                 <td>
                     JSON
-                    <code>
-                        {
-                            "name": "updatedNow222"
-                        }
-                    </code>
+                    <code> { "UserName": "updatedNow222" } </code>
                 </td>
                 <!-- Res data -->
                 <td>JSON</td>
@@ -189,7 +191,6 @@
             </tr>
         </tbody>
     </table>
-
 </body>
 
 </html>
