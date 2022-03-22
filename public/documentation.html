@@ -11,186 +11,197 @@
 </head>
 
 <body>
-    <h1>
-        myFlix is an API for Movie data such as the genre, year released, and
-        director.
-    </h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Logic</th>
-                <th scope="col">URL</th>
-                <th scope="col">Method</th>
-                <th scope="col">Request data format</th>
-                <th scope="col">Response data format</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <!-- Logic -->
-                <td>Get list of all movies</td>
-                <!-- URL -->
-                <td>/movies</td>
-                <!-- Method -->
-                <td>GET</td>
-                <!-- Req data -->
-                <td>None</td>
-                <!-- Res data -->
-                <td>JSON with all movies</td>
-            </tr>
-            <tr>
-                <!-- Logic -->
-                <td>Get one movie by title</td>
-                <!-- URL -->
-                <td>/movies/:title</td>
-                <!-- Method -->
-                <td>GET</td>
-                <!-- Req data -->
-                <td>None</td>
-                <!-- Res data -->
-                <td>
-                    JSON with one movie
-                    <br />
+    <div class="container">
+        <h1>
+            myFlix is an API for Movie data such as the genre, year released, and
+            director.
+        </h1>
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Logic</th>
+                        <th scope="col">URL</th>
+                        <th scope="col">Method</th>
+                        <th scope="col">Request data format</th>
+                        <th scope="col">Response data format</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!-- Logic -->
+                        <td>Get list of all movies</td>
+                        <!-- URL -->
+                        <td>/movies</td>
+                        <!-- Method -->
+                        <td>GET</td>
+                        <!-- Req data -->
+                        <td>None</td>
+                        <!-- Res data -->
+                        <td>JSON with all movies</td>
+                    </tr>
+                    <tr>
+                        <!-- Logic -->
+                        <td>Get one movie by title</td>
+                        <!-- URL -->
+                        <td>/movies/:Title</td>
+                        <!-- Method -->
+                        <td>GET</td>
+                        <!-- Req data -->
+                        <td>None</td>
+                        <!-- Res data -->
+                        <td>
+                            JSON with one movie
+                            <br />
 
-                    <code>
-              { "_id" : ObjectId("622c8a25104a0a6029ab20f1"), "Title" :
-              "Anchorman: The Legend of Ron Burgundy", "Description" : "Ron
-              Burgundy is San Diegos top-rated newsman in the male-dominated
-              broadcasting of the 1970s, but that is all about to change for Ron
-              and his cronies when an ambitious woman is hired as a new
-              anchor.", "Genre" : { "Name" : "Comedy", "Description" : "Comedy
-              is a genre of film in which the main emphasis is on humor. These
-              films are designed to make the audience laugh through amusement
-              and most often work by exaggerating characteristics for humorous
-              effect." }, "Director" : { "Name" : "Adam McKay", "Bio" : "Adam
-              McKay (born April 17, 1968) is an American screenwriter, director,
-              comedian, and actor. McKay has a comedy partnership with Will
-              Ferrell, with whom he co-wrote the films Anchorman, Talladega
-              Nights, and The Other Guys.", "Birth" : "1968", "Description" :
-              "Adam McKay rose to fame in the 2000s for his collaborations with
-              comedian Will Ferrell and co-wrote his films Anchorman, Talladega
-              Nights, and The Other Guys." }, "ImagePath" : "anchorman.png",
-              "Featured" : false }
+                            <code>
+                            {
+                            "Genre": {
+                            "Name": "Action",
+                            "Description": "Action film is a film genre in which the protagonist is thrust into a series of events that typically
+                            involve violence and physical feats."
+                            },
+                            "Director": {
+                            "Name": "Christopher Nolan",
+                            "Bio": "Best known for his cerebral, often nonlinear, storytelling, acclaimed writer-director Christopher Nolan was born
+                            on July 30, 1970, in London, England. Over the course of 15 years of filmmaking, Nolan has gone from low-budget
+                            independent films to working on some of the biggest blockbusters ever made.",
+                            "Birth": "1970"
+                            },
+                            "Actors": [],
+                            "_id": "622bc423104a0a6029ab20ea",
+                            "Title": "The Dark Knight",
+                            "Description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept
+                            one of the greatest psychological and physical tests of his ability to fight injustice.",
+                            "ImagePath": "thedarkknight.png",
+                            "Featured": false
+                            }
+                      
             </code>
-                </td>
-            </tr>
-            <tr>
-                <!-- Logic -->
-                <td>Get movies by genre</td>
-                <!-- URL -->
-                <td>/movies/genre/:genreName</td>
-                <!-- Method -->
-                <td>GET</td>
-                <!-- Req data -->
-                <td>None</td>
-                <!-- Res data -->
-                <td>
-                    JSON with list matching genre
-                    <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- Logic -->
+                        <td>Get movies by genre</td>
+                        <!-- URL -->
+                        <td>/movies/genre/:GenreName</td>
+                        <!-- Method -->
+                        <td>GET</td>
+                        <!-- Req data -->
+                        <td>None</td>
+                        <!-- Res data -->
+                        <td>
+                            JSON with list matching genre
+                            <br />
 
-                    <code>
-              { "_id" : ObjectId("622c8a25104a0a6029ab20f1"), "Title" :
-              "Anchorman: The Legend of Ron Burgundy", "Description" :
-              "Description", "Genre" : { "Name" : "Comedy", "Description" :
-              "Description" }, "Director" : { "Name" : "Adam McKay", "Bio" :
-              "Bio", "Birth" : "1968", }, "ImagePath" : "anchorman.png",
-              "Featured" : false } { "_id" :
-              ObjectId("622c8a2b104a0a6029ab20f2"), "Title" : "Dont Look Up",
-              "Description" : "Description", "Genre" : { "Name" : "Comedy",
-              "Description" : "Description" }, "Director" : { "Name" : "Adam
-              McKay", "Bio" : "Bio", "Birth" : "1968", }, "ImagePath" :
-              "dontlookup.png", "Featured" : true }
-            </code>
-                </td>
-            </tr>
-            <tr>
-                <!-- Logic -->
-                <td>Get movies by director</td>
-                <!-- URL -->
-                <td>/movies/directors/:directorName</td>
-                <!-- Method -->
-                <td>GET</td>
-                <!-- Req data -->
-                <td>None</td>
-                <!-- Res data -->
-                <td>JSON with movies from a director input</td>
-            </tr>
-            <tr>
-                <!-- Logic -->
-                <td>Register a new user</td>
-                <!-- URL -->
-                <td>/users</td>
-                <!-- Method -->
-                <td>POST</td>
-                <!-- Req data -->
-                <td>
-                    JSON
 
-                    <code>
+                            <code>
+                                    { "_id" : "622c8a25104a0a6029ab20f1", "Title" :
+                                    "Anchorman: The Legend of Ron Burgundy", "Description" :
+                                    "Description", "Genre" : { "Name" : "Comedy", "Description" :
+                                    "Description" }, "Director" : { "Name" : "Adam McKay", "Bio" :
+                                    "Bio", "Birth" : "1968", }, "ImagePath" : "anchorman.png",
+                                    "Featured" : false } { "_id" :
+                                    "622c8a2b104a0a6029ab20f2", "Title" : "Dont Look Up",
+                                    "Description" : "Description", "Genre" : { "Name" : "Comedy",
+                                    "Description" : "Description" }, "Director" : { "Name" : "Adam
+                                    McKay", "Bio" : "Bio", "Birth" : "1968", }, "ImagePath" :
+                                    "dontlookup.png", "Featured" : true }
+                                  </code>
+
+
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- Logic -->
+                        <td>Get movies by director</td>
+                        <!-- URL -->
+                        <td>/movies/directors/:DirectorName</td>
+                        <!-- Method -->
+                        <td>GET</td>
+                        <!-- Req data -->
+                        <td>None</td>
+                        <!-- Res data -->
+                        <td>JSON with movies from a director input</td>
+                    </tr>
+                    <tr>
+                        <!-- Logic -->
+                        <td>Register a new user</td>
+                        <!-- URL -->
+                        <td>/users</td>
+                        <!-- Method -->
+                        <td>POST</td>
+                        <!-- Req data -->
+                        <td>
+                            JSON
+
+                            <code>
               { UserName: 'moviefan22', Password: 'popcorn123', Email:
-              'moviefan@email.com', Birthday: new Date('1984-03-22'),
-              FavoriteMovies: [ObjectId('622bc423104a0a6029ab20ea')], };
+              'moviefan@email.com', Birthday: '1984-03-22' };
             </code>
-                </td>
-                <!-- Res data -->
-                <td>JSON</td>
-            </tr>
-            <tr>
-                <!-- Logic -->
-                <td>Add a favorite movie for user</td>
-                <!-- URL -->
-                <td>/users/:userName/favorites</td>
-                <!-- Method -->
-                <td>POST</td>
-                <!-- Req data -->
-                <td>
-                    JSON
-                    <code> {_id: "idformovie"} </code>
-                </td>
-                <!-- Res data -->
-                <td>JSON</td>
-            </tr>
-            <tr>
-                <!-- Logic -->
-                <td>Update username</td>
-                <!-- URL -->
-                <td>/users/:userName</td>
-                <!-- Method -->
-                <td>POST</td>
-                <!-- Req data -->
-                <td>
-                    JSON
-                    <code> { "UserName": "updatedNow222" } </code>
-                </td>
-                <!-- Res data -->
-                <td>JSON</td>
-            </tr>
-            <tr>
-                <!-- Logic -->
-                <td>Delete a favorite movie</td>
-                <!-- URL -->
-                <td>/users/:userName/favorites/:favoriteTitle</td>
-                <!-- Method -->
-                <td>DELETE</td>
-                <!-- Req data -->
-                <td>None</td>
-                <!-- Res data -->
-                <td>None</td>
-            </tr>
-            <tr>
-                <!-- Logic -->
-                <td>Delete a user</td>
-                <!-- URL -->
-                <td>/users/:userName</td>
-                <!-- Method -->
-                <td>DELETE</td>
-                <!-- Req data -->
-                <td>None</td>
-                <!-- Res data -->
-                <td>None</td>
-            </tr>
-        </tbody>
-    </table>
+                        </td>
+                        <!-- Res data -->
+                        <td>JSON</td>
+                    </tr>
+                    <tr>
+                        <!-- Logic -->
+                        <td>Add a favorite movie for user</td>
+                        <!-- URL -->
+                        <td>/users/:UserName/movies/:MovieID</td>
+                        <!-- Method -->
+                        <td>POST</td>
+                        <!-- Req data -->
+                        <td>
+                            None
+                        </td>
+                        <!-- Res data -->
+                        <td>JSON</td>
+                    </tr>
+                    <tr>
+                        <!-- Logic -->
+                        <td>Update username</td>
+                        <!-- URL -->
+                        <td>/users/:UserName</td>
+                        <!-- Method -->
+                        <td>POST</td>
+                        <!-- Req data -->
+                        <td>
+                            JSON
+                            <code> { UserName: 'updatedname', Password: 'popcorn123', Email:
+                                'moviefan@email.com', Birthday: '1984-03-22' }; </code>
+                        </td>
+                        <!-- Res data -->
+                        <td>JSON</td>
+                    </tr>
+                    <tr>
+                        <!-- Logic -->
+                        <td>Delete a favorite movie</td>
+                        <!-- URL -->
+                        <td>/users/:UserName/movies/:MovieID</td>
+                        <!-- Method -->
+                        <td>DELETE</td>
+                        <!-- Req data -->
+                        <td>None</td>
+                        <!-- Res data -->
+                        <td>None</td>
+                    </tr>
+                    <tr>
+                        <!-- Logic -->
+                        <td>Delete a user</td>
+                        <!-- URL -->
+                        <td>/users/:userName</td>
+                        <!-- Method -->
+                        <td>DELETE</td>
+                        <!-- Req data -->
+                        <td>None</td>
+                        <!-- Res data -->
+                        <td>None</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 
 </html>
