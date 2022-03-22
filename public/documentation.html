@@ -127,6 +127,27 @@
                     </tr>
                     <tr>
                         <!-- Logic -->
+                        <td>Get info for a director</td>
+                        <!-- URL -->
+                        <td>/directors/:DirectorName</td>
+                        <!-- Method -->
+                        <td>GET</td>
+                        <!-- Req data -->
+                        <td>None</td>
+                        <!-- Res data -->
+                        <td>JSON with director information
+                            <br>
+                            <code>
+                                {
+                                    "Name": "George Lucas",
+                                    "Bio": "George Walton Lucas, Jr. is an American filmmaker, creator of the film sagas of Star Wars and Indiana Jones",
+                                    "Birth": "1944"
+                                }
+                            </code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- Logic -->
                         <td>Register a new user</td>
                         <!-- URL -->
                         <td>/users</td>
@@ -135,11 +156,28 @@
                         <!-- Req data -->
                         <td>
                             JSON
-
+                            <br>
                             <code>
               { UserName: 'moviefan22', Password: 'popcorn123', Email:
               'moviefan@email.com', Birthday: '1984-03-22' };
             </code>
+                        </td>
+                        <!-- Res data -->
+                        <td>JSON</td>
+                    </tr>
+                    <tr>
+                        <!-- Logic -->
+                        <td>Update user info</td>
+                        <!-- URL -->
+                        <td>/users/:UserName</td>
+                        <!-- Method -->
+                        <td>POST</td>
+                        <!-- Req data -->
+                        <td>
+                            JSON
+                            <br>
+                            <code> { UserName: 'updatedname', Password: 'popcorn123', Email:
+                                'moviefan@email.com', Birthday: '1984-03-22' }; </code>
                         </td>
                         <!-- Res data -->
                         <td>JSON</td>
@@ -154,22 +192,6 @@
                         <!-- Req data -->
                         <td>
                             None
-                        </td>
-                        <!-- Res data -->
-                        <td>JSON</td>
-                    </tr>
-                    <tr>
-                        <!-- Logic -->
-                        <td>Update username</td>
-                        <!-- URL -->
-                        <td>/users/:UserName</td>
-                        <!-- Method -->
-                        <td>POST</td>
-                        <!-- Req data -->
-                        <td>
-                            JSON
-                            <code> { UserName: 'updatedname', Password: 'popcorn123', Email:
-                                'moviefan@email.com', Birthday: '1984-03-22' }; </code>
                         </td>
                         <!-- Res data -->
                         <td>JSON</td>

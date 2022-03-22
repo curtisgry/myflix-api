@@ -60,6 +60,19 @@ app.get('/movies/directors/:DirectorName', (req, res) => {
                 });
 });
 
+//Get info on one director
+app.get('/directors/:DirectorName', (req, res) => {
+        Movies.find({ 'Director.Name': req.params.DirectorName })
+                .then((movies) => {
+                        const directorInfo = movies[0].Director;
+                        res.json(directorInfo);
+                })
+                .catch((err) => {
+                        console.error(err);
+                        res.status(500).send(`Error: ${err}`);
+                });
+});
+
 // Get list of all users
 app.get('users', (req, res) => {
         Users.find()
