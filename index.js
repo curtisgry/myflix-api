@@ -2,110 +2,16 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const morgan = require('morgan');
 const uuid = require('uuid');
+const mongoose = require('mongoose');
+const Models = require('./models.js');
+
+// Mongoose models
+const Movies = Models.Movie;
+const Users = Models.User;
+
+mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
-
-const movieData = [
-        {
-                title: 'Interstellar',
-                year: '2014',
-                director: 'test',
-                genre: 'scifi',
-        },
-        {
-                title: 'Arrival',
-                year: '2016',
-                director: 'test',
-                genre: 'scifi',
-        },
-        {
-                title: 'The Matrix',
-                year: '1999',
-                director: 'test',
-                genre: 'scifi',
-        },
-        {
-                title: 'Star Wars: A New Hope',
-                year: '1977',
-                director: 'George Lucas',
-                genre: 'scifi',
-        },
-        {
-                title: 'Goodfellas',
-                year: '1990',
-                director: 'test',
-                genre: 'test',
-        },
-        {
-                title: 'Catch Me If You Can',
-                year: '2002',
-                director: 'test',
-                genre: 'test',
-        },
-        {
-                title: 'Spirited Away',
-                year: '2001',
-                director: 'test',
-                genre: 'test',
-        },
-        {
-                title: 'Good Will Hunting',
-                year: '1997',
-                director: 'test',
-                genre: 'test',
-        },
-        {
-                title: 'The Dark Knight',
-                year: '2008',
-                director: 'test',
-                genre: 'test',
-        },
-        {
-                title: 'The Truman Show',
-                year: '1998',
-                director: 'test',
-                genre: 'test',
-        },
-];
-
-const users = [
-        {
-                name: 'firstUser111',
-                favoriteMovies: [
-                        {
-                                title: 'The Truman Show',
-                                year: '1998',
-                                director: 'test',
-                                genre: 'test',
-                        },
-                ],
-                id: '0b8b587e-9eff-4e55-a3a9-e203bc0980a5',
-        },
-        {
-                name: 'secondUser111',
-                favoriteMovies: [
-                        {
-                                title: 'The Truman Show',
-                                year: '1998',
-                                director: 'test',
-                                genre: 'test',
-                        },
-                ],
-                id: '0b8b587e-9eff-4e55-a3a9-e203bc0980a5',
-        },
-        {
-                name: 'thirdUser111',
-                favoriteMovies: [
-                        {
-                                title: 'The Truman Show',
-                                year: '1998',
-                                director: 'test',
-                                genre: 'test',
-                        },
-                ],
-                id: '0b8b587e-9eff-4e55-a3a9-e203bc0980a5',
-        },
-];
 
 // Middleware
 app.use(morgan('common'));
