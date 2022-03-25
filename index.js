@@ -3,6 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const uuid = require('uuid');
 const mongoose = require('mongoose');
+const passport = require('passport');
 const Models = require('./models.js');
 
 // Mongoose models
@@ -18,12 +19,15 @@ app.use(morgan('common'));
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
+const auth = require('./auth')(app);
+require('./passport');
+
 app.get('/', (req, res) => {
         res.send('myFlix Movies API');
 });
 
 // Get list of all movies
-app.get('/movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', {session: false}), (req, res) => {
         Movies.find()
                 .then((movies) => res.json(movies))
                 .catch((err) => {
@@ -60,7 +64,7 @@ app.get('/movies/directors/:DirectorName', (req, res) => {
                 });
 });
 
-//Get info on one director
+// Get info on one director
 app.get('/directors/:DirectorName', (req, res) => {
         Movies.find({ 'Director.Name': req.params.DirectorName })
                 .then((movies) => {
