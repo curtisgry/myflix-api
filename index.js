@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const uuid = require('uuid');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const { check, validationResult } = require('express-validator');
 const Models = require('./models.js');
 
 // Mongoose models
@@ -110,32 +111,48 @@ app.get('users/:Username', (req, res) => {
   Email: String,
   Birthday: Date
 } */
-app.post('/users', (req, res) => {
-        const hashedPassword = Users.hashPassword(req.body.Password);
-        Users.findOne({ Username: req.body.Username })
-                .then((user) => {
-                        if (user) {
-                                return res.status(400).send(`${req.body.Username} already exists`);
-                        }
-                        Users.create({
-                                Username: req.body.Username,
-                                Password: hashedPassword,
-                                Email: req.body.Email,
-                                Birthday: req.body.Birthday,
-                        })
-                                .then((user) => {
-                                        res.status(201).json(user);
+app.post(
+        '/users',
+        [
+                check('Username', 'Username is required').isLength({ min: 5 }),
+                check('Username', 'Username contains non alphanumeric characters -not allowd.').isAlphanumeric(),
+                check('Password', 'Password is required').not().isEmpty(),
+                check('Email', 'Email does not appear to be valid').isEmail(),
+        ],
+        (req, res) => {
+                // Check Validation object for errors
+                const errors = validationResult(req);
+
+                if (!errors.isEmpty()) {
+                        return res.status(422).json({ errors: errors.array() });
+                }
+
+                const hashedPassword = Users.hashPassword(req.body.Password);
+                Users.findOne({ Username: req.body.Username })
+                        .then((user) => {
+                                if (user) {
+                                        return res.status(400).send(`${req.body.Username} already exists`);
+                                }
+                                Users.create({
+                                        Username: req.body.Username,
+                                        Password: hashedPassword,
+                                        Email: req.body.Email,
+                                        Birthday: req.body.Birthday,
                                 })
-                                .catch((error) => {
-                                        console.error(error);
-                                        res.status(500).send(`Error: ${error}`);
-                                });
-                })
-                .catch((error) => {
-                        console.error(error);
-                        res.status(500).send(`Error: ${error}`);
-                });
-});
+                                        .then((user) => {
+                                                res.status(201).json(user);
+                                        })
+                                        .catch((error) => {
+                                                console.error(error);
+                                                res.status(500).send(`Error: ${error}`);
+                                        });
+                        })
+                        .catch((error) => {
+                                console.error(error);
+                                res.status(500).send(`Error: ${error}`);
+                        });
+        }
+);
 
 // Add a movie to a user's list of favorites
 app.post('/users/:Username/movies/:MovieID', (req, res) => {
