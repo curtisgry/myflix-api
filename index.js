@@ -37,7 +37,7 @@ app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) 
                 });
 });
 // Get one movie by title
-app.get('/movies/:Title', (req, res) => {
+app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
         Movies.find({ Title: req.params.Title })
                 .then((movies) => res.json(movies))
                 .catch((err) => {
@@ -46,7 +46,7 @@ app.get('/movies/:Title', (req, res) => {
                 });
 });
 // Get movies by genre
-app.get('/movies/genre/:GenreName', (req, res) => {
+app.get('/movies/genre/:GenreName', passport.authenticate('jwt', { session: false }), (req, res) => {
         Movies.find({ 'Genre.Name': req.params.GenreName })
                 .then((movies) => res.json(movies))
                 .catch((err) => {
@@ -56,7 +56,7 @@ app.get('/movies/genre/:GenreName', (req, res) => {
 });
 
 // Get movies by a director
-app.get('/movies/directors/:DirectorName', (req, res) => {
+app.get('/movies/directors/:DirectorName', passport.authenticate('jwt', { session: false }), (req, res) => {
         Movies.find({ 'Director.Name': req.params.DirectorName })
                 .then((movies) => res.json(movies))
                 .catch((err) => {
@@ -66,7 +66,7 @@ app.get('/movies/directors/:DirectorName', (req, res) => {
 });
 
 // Get info on one director
-app.get('/directors/:DirectorName', (req, res) => {
+app.get('/directors/:DirectorName', passport.authenticate('jwt', { session: false }), (req, res) => {
         Movies.find({ 'Director.Name': req.params.DirectorName })
                 .then((movies) => {
                         const directorInfo = movies[0].Director;
@@ -79,7 +79,7 @@ app.get('/directors/:DirectorName', (req, res) => {
 });
 
 // Get list of all users
-app.get('users', (req, res) => {
+app.get('users', passport.authenticate('jwt', { session: false }), (req, res) => {
         Users.find()
                 .then((users) => {
                         res.status(201).json(users);
@@ -91,7 +91,7 @@ app.get('users', (req, res) => {
 });
 
 // Get one user by username
-app.get('users/:Username', (req, res) => {
+app.get('users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
         Users.findOne({ Username: req.params.Username })
                 .then((user) => {
                         res.json(user);
@@ -155,7 +155,7 @@ app.post(
 );
 
 // Add a movie to a user's list of favorites
-app.post('/users/:Username/movies/:MovieID', (req, res) => {
+app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
         Users.findOneAndUpdate(
                 { Username: req.params.Username },
                 {
@@ -181,7 +181,7 @@ app.post('/users/:Username/movies/:MovieID', (req, res) => {
   (required)
   Birthday: Date
 } */
-app.put('/users/:Username', (req, res) => {
+app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
         Users.findOneAndUpdate(
                 { Username: req.params.Username },
                 {
@@ -202,7 +202,7 @@ app.put('/users/:Username', (req, res) => {
 });
 
 // DELETE a favorite movie
-app.delete('/users/:Username/movies/:MovieID', (req, res) => {
+app.delete('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
         Users.findOneAndUpdate(
                 { Username: req.params.Username },
                 {
@@ -218,7 +218,7 @@ app.delete('/users/:Username/movies/:MovieID', (req, res) => {
 });
 
 // Delete a user by username
-app.delete('/users/:Username', (req, res) => {
+app.delete('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
         Users.findOneAndRemove({ Username: req.params.Username })
                 .then((user) => {
                         if (!user) {
@@ -244,8 +244,8 @@ app.use((err, req, res, next) => {
         res.status(500).send('Something went wrong');
 });
 
-const port = process.env.PORT || 8080;
+const port = 8080;
 
-app.listen(port, '0,0,0,0', () => {
+app.listen(port, () => {
         console.log(`Listening on port ${port}`);
 });
