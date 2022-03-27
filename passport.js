@@ -9,7 +9,7 @@ const ExtractJWT = passportJWT.ExtractJwt;
 
 passport.use(
         new LocalStrategy(
-                // Rename the default field keus
+                // Rename the default field keys
                 {
                         usernameField: 'Username',
                         passwordField: 'Password',
