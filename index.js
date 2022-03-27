@@ -23,8 +23,8 @@ app.use(morgan('common'));
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
-const auth = require('./auth')(app);
 require('./passport');
+const auth = require('./auth')(app);
 
 app.get('/', (req, res) => {
         res.send('myFlix Movies API');
