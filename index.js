@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 
 // Get list of all movies
 // Temporarily removed authentication for client side development
-app.get('/movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
         Movies.find()
                 .then((movies) => {
                         res.status(201).json(movies);
